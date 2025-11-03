@@ -45,4 +45,14 @@ public class PharmacyMapper {
                 pharmacy.getCategory()
         );
     }
+
+    public PurchaseResponse toPurchaseResponse(Pharmacy product, Double availableQuantity) {
+        return new PurchaseResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                availableQuantity
+        );
+    }
 }
