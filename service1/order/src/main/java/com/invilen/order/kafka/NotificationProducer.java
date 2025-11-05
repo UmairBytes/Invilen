@@ -14,11 +14,13 @@ public class NotificationProducer {
     private final KafkaTemplate<String, OrderConfirmation> kafkaTemplate;
 
     public void sendSuccessOrderConfirmation(OrderConfirmation orderConfirmation) {
+        System.out.println("Sending message to kafka");
         Message<OrderConfirmation> message = MessageBuilder
                 .withPayload(orderConfirmation)
                 .setHeader(KafkaHeaders.TOPIC, "order-topic")
                 .build();
         kafkaTemplate.send(message);
+        System.out.println("message successfully send to kafka");
 
     }
 }
