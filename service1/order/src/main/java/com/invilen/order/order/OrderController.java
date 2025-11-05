@@ -1,5 +1,6 @@
 package com.invilen.order.order;
 
+import com.invilen.order.dto.OrderRequest;
 import com.invilen.order.dto.OrderResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

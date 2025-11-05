@@ -1,6 +1,7 @@
 package com.invilen.order.order;
 
 
+import com.invilen.order.orderItem.OrderItems;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +32,9 @@ public class Order {
 
 //    @Enumerated(EnumType.STRING)
 //    private PaymentMethod paymentMethod;
-//    private String customerId;
-//    @OneToMany(mappedBy = "order")
-//    private List<OrderLine> orderLines;
+    private String customerId;
+    @OneToMany(mappedBy = "order")
+    private List<OrderItems> orderItems;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
