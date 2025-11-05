@@ -1,4 +1,9 @@
 package com.invilen.notification.dto;
 
-public record CustomerResponse() {
+public record CustomerResponse(
+        String id,
+        String firstname,
+        String lastname,
+        String email
+) {
 }
