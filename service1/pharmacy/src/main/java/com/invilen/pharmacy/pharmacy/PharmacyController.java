@@ -37,7 +37,7 @@ public class PharmacyController {
      }
 
      @PostMapping("/purchase")
-    public List<PurchaseResponse> pharmacyPurchase(@RequestBody @Valid List<PurchaseRequest> purchaseRequest){
+     public List<PurchaseResponse> pharmacyPurchase(@RequestBody @Valid List<PurchaseRequest> purchaseRequest){
          return pharmacyService.purchaseProduct(purchaseRequest);
      }
 

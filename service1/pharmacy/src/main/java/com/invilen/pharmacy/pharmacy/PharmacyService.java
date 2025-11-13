@@ -41,7 +41,7 @@ public class PharmacyService {
     public List<PurchaseResponse> purchaseProduct(List<PurchaseRequest> purchaseRequest) {
         var productIds = purchaseRequest
                 .stream()
-                .map(PurchaseRequest::Id)
+                .map(PurchaseRequest::productId)
                 .toList();
         var storedProduct = pharmacyRepository.findAllById(productIds)
                 .stream()
@@ -53,19 +53,19 @@ public class PharmacyService {
 
         var storedRequest = purchaseRequest
                 .stream()
-                .sorted(Comparator.comparing(PurchaseRequest::Id))
+                .sorted(Comparator.comparing(PurchaseRequest::productId))
                 .toList();
         var purchasedProducts = new ArrayList<PurchaseResponse>();
         for(int i=0; i < storedProduct.size(); i++){
             var product = storedProduct.get(i);
-            var productRequest = storedProduct.get(i);
-            if(product.getAvailableQuantity() < productRequest.getAvailableQuantity()){
-                throw new  ProductPurchaseException("Insufficient stock quantity for product with ID:: " + productRequest.getId());
+            var productRequest = storedRequest.get(i);
+            if(product.getAvailableQuantity() < productRequest.quantity()){
+                throw new  ProductPurchaseException("Insufficient stock quantity for product with ID:: " + productRequest.productId());
             }
-            var newAvailableQuantity = product.getAvailableQuantity() - productRequest.getAvailableQuantity();
+            var newAvailableQuantity = product.getAvailableQuantity() - productRequest.quantity();
             product.setAvailableQuantity(newAvailableQuantity);
             pharmacyRepository.save(product);
-            purchasedProducts.add(mapper.toPurchaseResponse(product,productRequest.getAvailableQuantity()));
+            purchasedProducts.add(mapper.toPurchaseResponse(product,productRequest.quantity()));
 
         }
         return purchasedProducts;

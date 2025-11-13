@@ -17,7 +17,7 @@ public class NotificationProducer {
         System.out.println("Sending message to kafka");
         Message<OrderConfirmation> message = MessageBuilder
                 .withPayload(orderConfirmation)
-                .setHeader(KafkaHeaders.TOPIC, "order-topic")
+                .setHeader(KafkaHeaders.TOPIC, "orderConfirmation")
                 .build();
         kafkaTemplate.send(message);
         System.out.println("message successfully send to kafka");

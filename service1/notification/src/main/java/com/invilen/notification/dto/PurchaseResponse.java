@@ -1,12 +1,13 @@
 package com.invilen.notification.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public record PurchaseResponse(
-        Integer productId,
         String name,
-        String description,
+        String brand,
+        Double quantity,
         BigDecimal price,
-        double quantity
+        LocalDate expiry_date
 ) {
 }

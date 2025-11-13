@@ -55,7 +55,7 @@ public class OrderService {
         notificationProducer.sendSuccessOrderConfirmation(orderConfirmation);
 
 
-        return null;
+        return order.getId();
     }
 
     public List<OrderResponse> findAll() {

@@ -29,7 +29,7 @@ public class EmailService {
     public void sendOrderConfirmation(OrderConfirmation orderConfirmation) throws MessagingException {
         System.out.println("Sending Email");
         var destinationEmail = orderConfirmation.customer().email();
-        var customerName = orderConfirmation.customer().firstname() + " " + orderConfirmation.customer().lastname();
+        var customerName = orderConfirmation.customer().firstName() + " " + orderConfirmation.customer().lastName();
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage, MULTIPART_MODE_RELATED, UTF_8.name());

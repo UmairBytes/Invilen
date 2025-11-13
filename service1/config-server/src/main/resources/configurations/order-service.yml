@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/order
+    url: jdbc:postgresql://localhost:5433/orderdb
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -16,7 +16,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: OrderConfirmation:com.invilen.order.kafka.OrderConfirmation
+        spring.json.type.mapping: orderConfirmation:com.invilen.order.kafka.OrderConfirmation
 
 server:
   port: 8070
@@ -25,4 +25,4 @@ application:
   config:
     customer-url: http://localhost:8090/api/customers
     bakery-url: http://localhost:8050/api/bakery
-    pharmacy-url: http://localhost:8020/api/pharmacy
+    pharmacy-url: http://localhost:8020/api/pharmacy/purchase

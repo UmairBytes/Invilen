@@ -4,7 +4,9 @@ import com.invilen.order.order.Order;
 import com.invilen.order.orderItem.OrderItems;
 import com.invilen.order.product.PurchaseRequest;
 import jakarta.validation.Valid;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderMapper {
     public OrderResponse fromOrder(Order order) {
         return new OrderResponse(
