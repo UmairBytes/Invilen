@@ -1,16 +1,16 @@
 spring:
   data:
     mongodb:
-      username: umair
-      password: umair
-      host: localhost
-      port: 27018
-      database: customer
-      authentication-database: admin
+      username: ${MONGO_USERNAME:umair}
+      password: ${MONGO_PASSWORD:umair}
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27018}
+      database: ${MONGO_DATABASE:customer}
+      authentication-database: ${MONGO_AUTH_DB:admin}
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
-      group-id: orderGroup
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092 }
+      group-id: ${CONSUMER_GROUP:orderGroup}
       auto-offset-reset: earliest
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
@@ -20,10 +20,10 @@ spring:
         spring.json.trusted.packages: '*'
         spring.json.type.mapping: OrderConfirmation:com.invilen.notification.dto.OrderConfirmation
   mail:
-    host: localhost
-    port: 1025
-    username: umair
-    password: umair
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:umair}
+    password: ${MAIL_PASSWORD:umair}
     properties:
       mail:
         smtp:
