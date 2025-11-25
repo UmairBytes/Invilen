@@ -9,7 +9,7 @@ spring:
       authentication-database: ${MONGO_AUTH_DB:admin}
   kafka:
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092 }
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
       group-id: ${CONSUMER_GROUP:orderGroup}
       auto-offset-reset: earliest
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
@@ -18,22 +18,18 @@ spring:
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: OrderConfirmation:com.invilen.notification.dto.OrderConfirmation
+        spring.json.type.mapping: orderConfirmation:com.invilen.notification.dto.OrderConfirmation
   mail:
-    host: ${MAIL_HOST:localhost}
-    port: ${MAIL_PORT:1025}
-    username: ${MAIL_USERNAME:umair}
-    password: ${MAIL_PASSWORD:umair}
+    host: smtp.gmail.com
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
-          trust: "*"
-        auth: true
-        starttls:
-          enabled: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 8040

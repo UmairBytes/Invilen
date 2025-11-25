@@ -1,4 +1,4 @@
-package com.invilen.order.kafka;
+package com.invilen.order.cofig;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
-public class OrderTopic {
+public class OrderTopicKafka {
 
     @Bean
     public NewTopic orderTopic(){

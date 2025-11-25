@@ -1,19 +1,19 @@
 package com.invilen.order.order;
 
 import com.invilen.order.customer.CustomerClient;
-import com.invilen.order.dto.OrderMapper;
-import com.invilen.order.dto.OrderRequest;
-import com.invilen.order.dto.OrderResponse;
+import com.invilen.order.dto.*;
 import com.invilen.order.kafka.NotificationProducer;
 import com.invilen.order.kafka.OrderConfirmation;
 import com.invilen.order.orderItem.OrderItemRepository;
 import com.invilen.order.product.ProductClient;
+import com.invilen.order.product.ProductServiceResolver;
 import com.invilen.order.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +24,7 @@ public class OrderService {
     private final OrderRepository repository;
     private final OrderMapper mapper;
     private final CustomerClient customerClient;
-    private final ProductClient productClient;
+    private final ProductServiceResolver productServiceResolver;
     private final OrderItemRepository itemRepository;
     private final NotificationProducer notificationProducer;
 
@@ -33,7 +33,8 @@ public class OrderService {
         var customer = customerClient.getCustomerById(request.customerId());
 
 //        step-2(connect with product micro service to get product details)
-        var purchasedProduct = productClient.getPurchaseProducts(request.products());
+        var client = productServiceResolver.getClient(request.productType());
+        var purchasedProduct = client.getProductById(request.products());
 //        step-3(Save the order in database)
 
         var order = repository.save(mapper.toOrder(request));
@@ -72,4 +73,27 @@ public class OrderService {
 
     }
 
+    public List<DailyReport> dailySalesReport(LocalDate start, LocalDate end) {
+        if(start==null) {
+            start = LocalDate.now().minusDays(1);
+            System.out.println(start);
+        }
+        if (end == null){
+            end = LocalDate.now().plusDays(1);
+            System.out.println(end);
+        }
+        return repository.findDailySalesReport(start, end);
+    }
+
+    public List<OrderReport> weeklySalesReport() {
+        return repository.findWeeklySalesReport();
+    }
+
+    public List<OrderReport> monthlySalesReport() {
+        return repository.findMonthlySalesReport();
+    }
+
+    public List<OrderReport> yearlySalesReport() {
+        return repository.findYearlySalesReport();
+    }
 }
