@@ -17,7 +17,7 @@ public class NotificationConsumer {
     private final NotificationRepository notificationRepository;
     private final EmailService emailService;
 
-    @KafkaListener(topics = "order-topic")
+    @KafkaListener(topics = "notification-topic", groupId = "notificationGroup")
     public void consumerOrderConfirmation(OrderConfirmation orderConfirmation) throws MessagingException {
         System.out.println("successfully fetched from kafka");
         notificationRepository.save(

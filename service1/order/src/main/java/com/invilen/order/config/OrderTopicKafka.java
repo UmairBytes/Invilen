@@ -1,4 +1,4 @@
-package com.invilen.order.cofig;
+package com.invilen.order.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ public class OrderTopicKafka {
     @Bean
     public NewTopic orderTopic(){
         return TopicBuilder
-                .name("order-topic")
+                .name("notification-topic")
                 .build();
     }
 }
