@@ -12,19 +12,6 @@ services:
     ports:
       - 5433:5432
 
-
-  invilensPgadmin:
-    container_name: invilens_pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: postgres@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    volumes:
-      - invilensPgadmin:/var/lib/pgadmin
-    ports:
-      - 5051:80
-    restart: unless-stopped
-
   invilensMongodb:
     container_name: invilens_mongodb
     image: mongo
@@ -48,37 +35,12 @@ services:
       - ME_CONFIG_MONGODB_SERVER=invilensMongodb
 
 
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.3.0
-    container_name: invilen_zookeeper
-    ports:
-      - "2181:2181"
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-
   kafka:
-    image: confluentinc/cp-kafka:7.3.0   # 👈 pin to version that supports Zookeeper
-    container_name: invilen_kafka
+    image: apache/kafka
+    container_name: kafka
     ports:
       - "9092:9092"
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-  mail-dev:
-    container_name: invilen_mail
-    image: maildev/maildev
-    ports:
-      - 1080:1080
-      - 1025:1025
+
 volumes:
   invilensData1:
     driver: local
