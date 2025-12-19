@@ -1,4 +1,6 @@
--- CATEGORY TABLE
+-- liquibase formatted sql
+-- changeset umair:bakery-001
+
 create table if not exists category
 (
     id integer generated always as identity primary key,
@@ -6,7 +8,6 @@ create table if not exists category
     name varchar(255)
 );
 
--- BAKERY TABLE
 create table if not exists bakery
 (
      id integer generated always as identity primary key,
@@ -24,3 +25,5 @@ create sequence category_seq start 1 increment 1;
 
 drop sequence if exists bakery_seq;
 create sequence bakery_seq start 1 increment 1;
+
+-- rollback DROP TABLE bakery,category;

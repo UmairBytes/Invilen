@@ -1,6 +1,5 @@
--- ======================================
--- Insert sample data into category table
--- ======================================
+-- liquibase formatted sql
+-- changeset umair:bakery-002
 
 INSERT INTO category (name, description) VALUES
 ('Cakes', 'Soft and delicious cakes for every occasion'),
@@ -9,9 +8,6 @@ INSERT INTO category (name, description) VALUES
 ('Bread', 'Freshly baked loaves and buns'),
 ('Donuts', 'Sweet and fluffy donuts with various toppings');
 
--- ======================================
--- Insert sample data into bakery table
--- ======================================
 
 INSERT INTO bakery (name, description, weight, available_quantity, price, category_id) VALUES
 -- Cakes
@@ -53,3 +49,5 @@ INSERT INTO bakery (name, description, weight, available_quantity, price, catego
 ('Boston Cream Donut', 'Filled donut with vanilla custard and chocolate top', '90 g', 15, 89.00, 5),
 ('Cinnamon Donut', 'Soft donut with a cinnamon sugar coating', '80 g', 22, 79.00, 5),
 ('Blueberry Donut', 'Donut with blueberry filling and glaze', '80 g', 14, 85.00, 5);
+
+-- rollback DELETE  FROM category,bakery;

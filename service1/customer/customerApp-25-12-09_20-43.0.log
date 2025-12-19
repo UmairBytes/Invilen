@@ -1,0 +1,11 @@
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Disable delta property : false 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Single vip registry refresh property : null 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Force full registry fetch : false 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Application is null : false 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Registered Applications size is zero : true 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Application version is -1: false 
+25-12-09 20:43:15 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -Getting all instance registry info from the eureka server 
+25-12-09 20:43:16 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient -The response status is 200 
+25-12-09 20:43:40 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -Initializing Spring DispatcherServlet 'dispatcherServlet' 
+25-12-09 20:43:40 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet' 
+25-12-09 20:43:40 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 156 ms 
